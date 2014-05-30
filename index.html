@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Silly Simple</title>
+
+	</head>
+	<body>
+		<!-- 
+			Let's have a button called "Silly" that people press. And the button tells them "Do It". 
+			And we want to put te result into a div that's below the button. Since we want to react 
+			on the button and update the result, we should give both of them identifiers. So we call
+			the result div "results".
+		-->
+		<button id="silly"> Do It </button> 
+		<button id="clear"> Clear </button> <!-- clears the content of the result -->
+		<div id="results"></div>
+
+		<!-- 
+			We want something to happen (that will go in the result div) when clicking on "Do It", so
+			we create a script in which we'll hook up the elements of the page in terms if click events
+			for the "Do It" button and how we want to update that result. We'll use a library called zepto
+			that we'll download and put the source code into an external folder as "js/zepto.min.js". 
+			Zepto because it is very much like the familiar Jquery and a lot smaller than it. And since 
+			this application we're making is going to be ran on mobile, we're not going to need Jquery's
+			ability to run on lots of different browsers because we know that the target browsers for us
+			will be the Android browser.
+		-->
+		<script src="js/zepto.min.js"></script>
+		<script src="js/silly.js"></script>
+
+		<!-- 
+			In the script we hook up with the #silly button ( "#" because it's an identifier) and we handle
+			the click event on it. In the click we make an anonymous function and ignore the parameteres 
+			(takes no argument). Inside, we want to use a module called "SILLY.DoIt". We pass in an object 
+			in that module found by passing the #result id. To update this we result we create another button 
+			called "clear" that clears the content of the #results. For that we handle the #clear click event,
+			grab the #results and set the html of the #results to nothing which will clear out anything that's 
+			in there. For that have to create the SILLY module in a new js file.
+		-->
+		<script>
+			$('#silly').click(function() {
+				SILLY.DoIt($('#results'));
+			});
+			$('#clear').click(function() {
+				$('#results').html('');
+			});
+		</script>
+	</body>
+</html>
